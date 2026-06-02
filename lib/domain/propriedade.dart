@@ -1,9 +1,9 @@
 class Propriedade {
-  String urlImagem;
-  String local;
-  String host;
-  String dates;
-  String total;
+  late String urlImagem;
+  late String local;
+  late String host;
+  late String dates;
+  late String total;
 
   Propriedade({
     required this.urlImagem,
@@ -12,4 +12,14 @@ class Propriedade {
     required this.dates,
     required this.total,
   });
+
+  Propriedade.fromJson(Map<String, dynamic> json) {
+    // id = json['id'];
+    // avaliacao = json['avaliacao'];
+    total = (json['total']).toString();
+    dates = json['dates'];
+    local = json['local'];
+    host = json['host'];
+    urlImagem = json['urlImagem'];
+  }
 }
