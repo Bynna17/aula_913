@@ -1,4 +1,6 @@
+import 'package:aula_913/db/shared_prefs.dart';
 import 'package:aula_913/pages/explore_page.dart';
+import 'package:aula_913/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -10,6 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  SharedPrefs prefs = SharedPrefs();
   int selectedIndex = 0;
   List pages = [
     ExplorePage(),
@@ -23,6 +26,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: buildActions(),
         title: TextField(
           decoration: InputDecoration(
             hintText: 'Pesquisar',
@@ -33,6 +37,26 @@ class _HomePageState extends State<HomePage> {
       body: pages[selectedIndex],
       bottomNavigationBar: buildBottomNavBar(),
     );
+  }
+
+  buildActions() {
+    return [
+      IconButton(
+        onPressed: () {
+          prefs.setUserStatus(false);
+
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return LoginPage();
+              },
+            ),
+          );
+        },
+        icon: Icon(Icons.logout),
+      ),
+    ];
   }
 
   buildBottomNavBar() {
