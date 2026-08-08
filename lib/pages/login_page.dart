@@ -89,7 +89,9 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-
+/*Nessa classe, basicamente, quando o usuário aperta no botão 'Entrar', é enviado usuário e senha para que o método 'login' (na classe DAO de User), que analisa se eles estão certos (se os dois estiverem corretos,
+  retorna um true ( que ficará armazenado na variável booleana isAuth) ou pode retornar um false, caso tenha algo errado. Após isso, se tudo estiver ok, o usuário pode entrar na página inicial e no shared_preferencies, é marcado como 'true' (usuário logado -- para próximas vezes em que ele entrar, o app já saberá que ele está logado).
+  No entanto, se algo estiver errado, aparece uma mensagem dizendo que tem algo errado no usuáro e/ou senha. */
   onPressed() async {
     String username = userController.text;
     String password = passwordController.text;
