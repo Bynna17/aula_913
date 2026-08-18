@@ -27,7 +27,18 @@ class _ExplorePageState extends State<ExplorePage> {
     await Future.delayed(Duration(seconds: 2));
     setState(() {});
   }
+/*ListView
+*Recebe uma lista fixa de widgets (children: [...])
+*Constrói todos os itens de uma vez, mesmo os que não estão visíveis na tela
+*Indicado para listas pequenas e estáticas
 
+ListView.builder
+
+*Constrói os itens sob demanda (lazy loading), conforme aparecem na tela
+*Usa itemCount (quantidade de itens) e itemBuilder (função que constrói cada item)
+*Ideal para listas grandes ou dinâmicas, como dados vindos de um banco de dados
+*Melhor performance, pois não desperdiça memória construindo itens fora de tela
+*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
