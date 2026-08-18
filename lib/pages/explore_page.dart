@@ -11,43 +11,40 @@ class ExplorePage extends StatefulWidget {
 }
 
 class _ExplorePageState extends State<ExplorePage> {
-  // Lista de Propriedades inicia vazia
-  List<Propriedade> listaPropriedades = [];
+  // List<Propriedade> listaPropriedades = [];
+  late Future<List<Propriedade>> futureListaPropriedades;
 
   @override
   void initState() {
     super.initState();
-    // É necessário pois o initState não permite parar a tela (uso do await)
-    loadData();
-  }
-
-  // Carregar os dados do Banco de Dados
-  loadData() async {
-    listaPropriedades = await PropriedadeDao().listarPropriedades();
-    await Future.delayed(Duration(seconds: 2));
-    setState(() {});
+    futureListaPropriedades = PropriedadeDao().listarPropriedades();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // For (i = 0; i < tam; i++)
-      body: ListView.builder(
-        // Num de repeticoes
-        itemCount: listaPropriedades.length,
-        // Children
-        itemBuilder: (context, i) {
-          return ContainerPropriedade(propriedade: listaPropriedades[i]);
+      body: FutureBuilder(
+        future: futureListaPropriedades,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            List<Propriedade> listaPropriedades = snapshot.requireData;
+            return buildListView(listaPropriedades);
+          }
+
+          return Center(child: CircularProgressIndicator());
         },
       ),
+    );
+  }
 
-      // ListView(
-      //   children: [
-      //     buildContainer(propriedade: listaPropriedades[0]),
-      //     buildContainer(propriedade: listaPropriedades[1]),
-      //     buildContainer(propriedade: listaPropriedades[2]),
-      //   ],
-      // ),
+  buildListView(listaPropriedades) {
+    return ListView.builder(
+      // Num de repeticoes
+      itemCount: listaPropriedades.length,
+      // Children
+      itemBuilder: (context, i) {
+        return ContainerPropriedade(propriedade: listaPropriedades[i]);
+      },
     );
   }
 }

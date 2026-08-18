@@ -25,6 +25,7 @@ class PropriedadeDao {
       lista.add(propriedade);
     }
 
+    await Future.delayed(Duration(seconds: 5));
     return lista;
   }
 }
