@@ -1,3 +1,19 @@
+/*Método: Método	
+*Executa uma lógica e retorna um valor
+*Chamado como minhaFuncao()	
+*Não tem estado próprio (a menos que manipule algo externo)	
+*Vive dentro de uma classe
+
+Classe Widget: 	Classe Widget
+*Representa um componente visual completo
+*Instanciado como MeuWidget(parametros)
+*Pode ter seu próprio estado (StatefulWidget)
+*É uma classe em si (extends StatelessWidget ou StatefulWidget)
+*Se a intenção é usar esse componente em várias telas diferentes do app, 
+definitivamente vale a pena ser uma classe widget separada (em outro arquivo,
+como já é o caso do container_propriedade.dart) - uso um widget para todas as propriedades(caixa de informação sobre
+o lugar específico do Airbnb), com características definidas, onde as características específicas vêm do objeto propriedade,nque entra como parâmetro no Explore Page*/
+
 import 'package:aula_913/domain/Propriedade.dart';
 import 'package:aula_913/pages/detail_page.dart';
 import 'package:flutter/material.dart';
