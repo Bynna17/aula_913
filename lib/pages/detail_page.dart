@@ -1,3 +1,5 @@
+/*A DetailPage é a tela de detalhes que abre quando o usuário toca em um card da lista de propriedades (o ContainerPropriedade).*/
+
 import 'package:aula_913/domain/Propriedade.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
